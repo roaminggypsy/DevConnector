@@ -224,9 +224,13 @@ router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
 
+    if (!post) {
+      return res.status(404).json({ msg: 'post does not exist' });
+    }
+
     // Pull out comment
     const comment = post.comments.find(
-      comment => comment.id === req.params.comment_id
+      comment => comment.id.toString() === req.params.comment_id
     );
 
     // Make sure comment exists
@@ -243,8 +247,8 @@ router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
 
     // Get remove index
     const removeIndex = post.comments
-      .map(comment => comment.user.toString())
-      .indexOf(req.user.id);
+      .map(comment => comment.id.toString())
+      .indexOf(req.params.comment_id);
 
     post.comments.splice(removeIndex, 1);
 
