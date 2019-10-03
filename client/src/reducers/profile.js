@@ -11,7 +11,7 @@ const initialState = {
   // for current profile page
   profile: null,
   // for listinig page
-  profilles: [],
+  profiles: [],
   repos: [],
   loading: true,
   error: {}

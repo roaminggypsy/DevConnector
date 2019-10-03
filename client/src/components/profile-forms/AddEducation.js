@@ -3,7 +3,6 @@ import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addEducation } from '../../actions/profile';
-import AddExperience from './AddExperience';
 
 const AddEducation = ({ addEducation, history }) => {
   const [formData, setFormData] = useState({
